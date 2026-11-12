@@ -1,12 +1,22 @@
 """
-Run the 10-question smoke set against the Qdrant index.
+Run the smoke set against the Qdrant index.
 
-Metrics: Recall@5, MRR, and per-question retrieval results.
-Output:  evaluation/results/stage1_smoke.json
+Supports two modes:
+- dense: MiniLM dense-only retrieval (Stage 1 baseline)
+- hybrid: MiniLM + BM25 with RRF fusion (Stage 2)
+
+Usage:
+    python scripts/run_smoke_eval.py --mode dense --output stage1_smoke.json
+    python scripts/run_smoke_eval.py --mode hybrid --output stage2_smoke.json
 """
 
+import argparse
 import json
+import sys
 from pathlib import Path
+
+# Add project root to sys.path so `retrieval` can be imported
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
@@ -16,14 +26,12 @@ DB_PATH = Path("D:/k8s-rag/data/qdrant/v1.36_db")
 COLLECTION_NAME = "chunks_v1.36"
 SMOKE_PATH = Path("D:/k8s-rag/evaluation/smoke_set.jsonl")
 RESULTS_DIR = Path("D:/k8s-rag/evaluation/results")
-RESULTS_PATH = RESULTS_DIR / "stage1_smoke.json"
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 TOP_K = 5
 
 
 def matches_expected(payload: dict, expected: dict) -> bool:
-    """Check if a retrieved chunk matches an expected (file_path, section_path)."""
     if payload.get("file_path") != expected["file_path"]:
         return False
     expected_section = expected.get("section_path") or []
@@ -34,19 +42,32 @@ def matches_expected(payload: dict, expected: dict) -> bool:
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--mode", choices=["dense", "hybrid"], default="dense")
+    parser.add_argument("--output", default="stage1_smoke.json")
+    args = parser.parse_args()
+
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    results_path = RESULTS_DIR / args.output
 
     questions = []
     with SMOKE_PATH.open("r", encoding="utf-8") as f:
         for line in f:
             questions.append(json.loads(line))
     print(f"Loaded {len(questions)} smoke questions")
+    print(f"Mode: {args.mode}")
 
-    print(f"Loading model {MODEL_NAME}")
-    model = SentenceTransformer(MODEL_NAME, device="cpu")
-
-    print(f"Connecting to Qdrant at {DB_PATH}")
-    client = QdrantClient(path=str(DB_PATH))
+    if args.mode == "dense":
+        print(f"Loading model {MODEL_NAME}")
+        model = SentenceTransformer(MODEL_NAME, device="cpu")
+        print(f"Connecting to Qdrant at {DB_PATH}")
+        client = QdrantClient(path=str(DB_PATH))
+        retriever = None
+    else:
+        from retrieval.hybrid import HybridRetriever
+        retriever = HybridRetriever()
+        client = None
+        model = None
 
     results = []
     recall_hits = 0
@@ -56,17 +77,31 @@ def main():
         query = q["question"]
         expected_list = q["expected"]
 
-        query_vec = model.encode(query, normalize_embeddings=True).tolist()
-        hits = client.query_points(
-            collection_name=COLLECTION_NAME,
-            query=query_vec,
-            limit=TOP_K,
-        ).points
+        if args.mode == "dense":
+            query_vec = model.encode(query, normalize_embeddings=True).tolist()
+            hits = client.query_points(
+                collection_name=COLLECTION_NAME,
+                query=query_vec,
+                limit=TOP_K,
+            ).points
+            top_payloads = [h.payload for h in hits]
+            top_scores = [h.score for h in hits]
+        else:
+            fused = retriever.search(query, top_k=TOP_K * 4)
+            top_payloads = []
+            top_scores = []
+            for chunk_id, score in fused[:TOP_K * 4]:
+                payload = retriever.get_payload(chunk_id)
+                if payload:
+                    top_payloads.append(payload)
+                    top_scores.append(score)
+                if len(top_payloads) >= TOP_K:
+                    break
 
         hit_rank = None
-        for rank, h in enumerate(hits, 1):
+        for rank, payload in enumerate(top_payloads[:TOP_K], 1):
             for exp in expected_list:
-                if matches_expected(h.payload, exp):
+                if matches_expected(payload, exp):
                     hit_rank = rank
                     break
             if hit_rank:
@@ -86,12 +121,12 @@ def main():
             "top_5": [
                 {
                     "rank": i + 1,
-                    "score": round(h.score, 4),
-                    "file_path": h.payload.get("file_path"),
-                    "section_path": h.payload.get("section_path"),
-                    "chunk_id": h.payload.get("chunk_id"),
+                    "score": round(top_scores[i], 4),
+                    "file_path": top_payloads[i].get("file_path"),
+                    "section_path": top_payloads[i].get("section_path"),
+                    "chunk_id": top_payloads[i].get("chunk_id"),
                 }
-                for i, h in enumerate(hits)
+                for i in range(min(TOP_K, len(top_payloads)))
             ],
         })
 
@@ -102,7 +137,8 @@ def main():
     mrr = sum(reciprocal_ranks) / len(questions) if reciprocal_ranks else 0.0
 
     summary = {
-        "stage": "stage1_smoke",
+        "stage": f"{args.mode}_smoke",
+        "mode": args.mode,
         "num_questions": len(questions),
         "top_k": TOP_K,
         "recall_at_5": round(recall_at_5, 4),
@@ -113,15 +149,18 @@ def main():
         "results": results,
     }
 
-    with RESULTS_PATH.open("w", encoding="utf-8") as f:
+    with results_path.open("w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
 
     print()
     print(f"Recall@5: {recall_at_5:.1%} ({recall_hits}/{len(questions)})")
     print(f"MRR:      {mrr:.4f}")
-    print(f"Saved to: {RESULTS_PATH}")
+    print(f"Saved to: {results_path}")
 
-    client.close()
+    if client:
+        client.close()
+    if retriever:
+        retriever.close()
 
 
 if __name__ == "__main__":
