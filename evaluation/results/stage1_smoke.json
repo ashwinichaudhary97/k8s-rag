@@ -1,0 +1,1012 @@
+{
+  "stage": "stage1_smoke",
+  "num_questions": 15,
+  "top_k": 5,
+  "recall_at_5": 0.6667,
+  "mrr": 0.6,
+  "hits": 10,
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "collection": "chunks_v1.36",
+  "results": [
+    {
+      "question_id": "q1",
+      "question": "My application takes a while to load its configuration after starting. How can I prevent Kubernetes from sending it traffic during that time without restarting the container?",
+      "category": "paraphrased",
+      "hit": true,
+      "hit_rank": 2,
+      "expected": [
+        {
+          "file_path": "content/en/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes.md",
+          "section_path": [
+            "Define a liveness command",
+            "Define readiness probes"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.6572,
+          "file_path": "content/en/docs/reference/networking/virtual-ips.md",
+          "section_path": [
+            "Proxy modes",
+            "Traffic policies",
+            "Internal traffic policy"
+          ],
+          "chunk_id": "1e2cd25f52201552"
+        },
+        {
+          "rank": 2,
+          "score": 0.6518,
+          "file_path": "content/en/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes.md",
+          "section_path": [
+            "Define a liveness command",
+            "Define readiness probes"
+          ],
+          "chunk_id": "1223cc311a4ffa1f"
+        },
+        {
+          "rank": 3,
+          "score": 0.6411,
+          "file_path": "content/en/docs/concepts/workloads/pods/pod-lifecycle.md",
+          "section_path": [
+            "Pod lifetime",
+            "Container probes",
+            "Startup probe"
+          ],
+          "chunk_id": "ff60a419d035c11a"
+        },
+        {
+          "rank": 4,
+          "score": 0.6368,
+          "file_path": "content/en/docs/reference/command-line-tools-reference/feature-gates/SchedulerAsyncAPICalls.md",
+          "section_path": [],
+          "chunk_id": "83cbf89ab60688d7"
+        },
+        {
+          "rank": 5,
+          "score": 0.6286,
+          "file_path": "content/en/docs/reference/access-authn-authz/admission-controllers.md",
+          "section_path": [
+            "What are they?",
+            "What does each admission controller do?",
+            "DefaultTolerationSeconds"
+          ],
+          "chunk_id": "138cb7b499de136c"
+        }
+      ]
+    },
+    {
+      "question_id": "q2",
+      "question": "I want to try Kubernetes NetworkPolicy in my cluster. How do I create a simple nginx workload and expose it so I can experiment with network policies?",
+      "category": "task",
+      "hit": true,
+      "hit_rank": 1,
+      "expected": [
+        {
+          "file_path": "content/en/docs/tasks/administer-cluster/declare-network-policy.md",
+          "section_path": [
+            "Create an `nginx` deployment and expose it via a service"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.7423,
+          "file_path": "content/en/docs/tasks/administer-cluster/declare-network-policy.md",
+          "section_path": [
+            "Create an `nginx` deployment and expose it via a service"
+          ],
+          "chunk_id": "40ca0dbaf344e4c6"
+        },
+        {
+          "rank": 2,
+          "score": 0.6989,
+          "file_path": "content/en/docs/tasks/access-application-cluster/connecting-frontend-backend.md",
+          "section_path": [
+            "Creating the backend using a Deployment",
+            "Creating the frontend"
+          ],
+          "chunk_id": "9628fd54d9499195"
+        },
+        {
+          "rank": 3,
+          "score": 0.6874,
+          "file_path": "content/en/docs/concepts/workloads/pods/_index.md",
+          "section_path": [
+            "What is a Pod?",
+            "Using Pods"
+          ],
+          "chunk_id": "5e98d92512944826"
+        },
+        {
+          "rank": 4,
+          "score": 0.6779,
+          "file_path": "content/en/docs/tutorials/services/connect-applications-service.md",
+          "section_path": [
+            "The Kubernetes model for connecting containers",
+            "Exposing pods to the cluster"
+          ],
+          "chunk_id": "7367a55aac706d87"
+        },
+        {
+          "rank": 5,
+          "score": 0.6584,
+          "file_path": "content/en/docs/tutorials/services/connect-applications-service.md",
+          "section_path": [
+            "The Kubernetes model for connecting containers",
+            "Exposing the Service"
+          ],
+          "chunk_id": "7d1fc85c8bcf2aa4"
+        }
+      ]
+    },
+    {
+      "question_id": "q3",
+      "question": "How do I create an Ingress from the command line with multiple host/path rules, assign an IngressClass, and configure a default backend?",
+      "category": "exact-identifier",
+      "hit": false,
+      "hit_rank": null,
+      "expected": [
+        {
+          "file_path": "content/en/docs/reference/kubectl/generated/kubectl_create/kubectl_create_ingress.md",
+          "section_path": []
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.6232,
+          "file_path": "content/en/docs/concepts/services-networking/ingress.md",
+          "section_path": [
+            "Terminology",
+            "The Ingress resource"
+          ],
+          "chunk_id": "562e0440ac655ae7"
+        },
+        {
+          "rank": 2,
+          "score": 0.6207,
+          "file_path": "content/en/docs/concepts/services-networking/ingress.md",
+          "section_path": [
+            "Terminology",
+            "Updating an Ingress"
+          ],
+          "chunk_id": "bdd2e6c90455b8e8"
+        },
+        {
+          "rank": 3,
+          "score": 0.6185,
+          "file_path": "content/en/docs/concepts/services-networking/ingress.md",
+          "section_path": [
+            "Terminology",
+            "Prerequisites"
+          ],
+          "chunk_id": "064cceb034984468"
+        },
+        {
+          "rank": 4,
+          "score": 0.5973,
+          "file_path": "content/en/docs/concepts/services-networking/ingress.md",
+          "section_path": [
+            "Terminology",
+            "The Ingress resource",
+            "Ingress rules"
+          ],
+          "chunk_id": "f8e5c5b72bc25913"
+        },
+        {
+          "rank": 5,
+          "score": 0.5948,
+          "file_path": "content/en/docs/concepts/services-networking/ingress.md",
+          "section_path": [
+            "Terminology",
+            "Ingress class",
+            "IngressClass scope"
+          ],
+          "chunk_id": "928a8f0fc4c1998e"
+        }
+      ]
+    },
+    {
+      "question_id": "q4",
+      "question": "I deployed nginx using a YAML manifest. What's the quickest way to inspect its rollout strategy, replica status, Pod template, and associated Pods?",
+      "category": "task",
+      "hit": false,
+      "hit_rank": null,
+      "expected": [
+        {
+          "file_path": "content/en/docs/tasks/run-application/run-stateless-application-deployment.md",
+          "section_path": [
+            "Creating and exploring an nginx deployment"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.6271,
+          "file_path": "content/en/docs/reference/kubectl/generated/kubectl_rollout/_index.md",
+          "section_path": [],
+          "chunk_id": "4f16ddc42c75b0f7"
+        },
+        {
+          "rank": 2,
+          "score": 0.6216,
+          "file_path": "content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+          "section_path": [
+            "Using `kubectl describe pod` to fetch details about pods",
+            "Example: debugging Pending Pods"
+          ],
+          "chunk_id": "9c35d0cb69203237"
+        },
+        {
+          "rank": 3,
+          "score": 0.6107,
+          "file_path": "content/en/docs/tasks/run-application/update-deployment-rolling.md",
+          "section_path": [
+            "Performing a rolling update",
+            "Monitoring rollout progress"
+          ],
+          "chunk_id": "d2d35f71c0d349e1"
+        },
+        {
+          "rank": 4,
+          "score": 0.6063,
+          "file_path": "content/en/docs/concepts/workloads/controllers/deployment.md",
+          "section_path": [
+            "Use Case",
+            "Deployment status",
+            "Progressing Deployment"
+          ],
+          "chunk_id": "00c98f533c77eff7"
+        },
+        {
+          "rank": 5,
+          "score": 0.6004,
+          "file_path": "content/en/docs/concepts/workloads/controllers/deployment.md",
+          "section_path": [
+            "Use Case",
+            "Rolling Back a Deployment"
+          ],
+          "chunk_id": "33fbf6c07d9877a4"
+        }
+      ]
+    },
+    {
+      "question_id": "q5",
+      "question": "I have separate development and production namespaces. How can I verify that resources created in one namespace aren't visible when I switch to the other?",
+      "category": "paraphrased",
+      "hit": true,
+      "hit_rank": 1,
+      "expected": [
+        {
+          "file_path": "content/en/docs/tutorials/cluster-management/namespaces-walkthrough.md",
+          "section_path": [
+            "Prerequisites",
+            "Create pods in each namespace"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.5212,
+          "file_path": "content/en/docs/tutorials/cluster-management/namespaces-walkthrough.md",
+          "section_path": [
+            "Prerequisites",
+            "Create pods in each namespace"
+          ],
+          "chunk_id": "ca14b790dd01f510"
+        },
+        {
+          "rank": 2,
+          "score": 0.5022,
+          "file_path": "content/en/docs/concepts/overview/working-with-objects/namespaces.md",
+          "section_path": [
+            "When to Use Multiple Namespaces",
+            "Not all objects are in a namespace"
+          ],
+          "chunk_id": "38644b800a3ada37"
+        },
+        {
+          "rank": 3,
+          "score": 0.5,
+          "file_path": "content/en/docs/concepts/overview/working-with-objects/namespaces.md",
+          "section_path": [
+            "When to Use Multiple Namespaces"
+          ],
+          "chunk_id": "d32facea4260c694"
+        },
+        {
+          "rank": 4,
+          "score": 0.4952,
+          "file_path": "content/en/docs/reference/kubernetes-api/core/namespace-v1.md",
+          "section_path": [
+            "Namespace",
+            "NamespaceSpec"
+          ],
+          "chunk_id": "b63037017010094c"
+        },
+        {
+          "rank": 5,
+          "score": 0.4852,
+          "file_path": "content/en/docs/tasks/administer-cluster/namespaces.md",
+          "section_path": [
+            "Viewing namespaces",
+            "Subdividing your cluster using Kubernetes namespaces",
+            "Create pods in each namespace"
+          ],
+          "chunk_id": "b4019f8e6c83f300"
+        }
+      ]
+    },
+    {
+      "question_id": "q6",
+      "question": "My CoreDNS Pods keep entering CrashLoopBackOff after setting up the cluster. Could this be related to SELinux or DNS forwarding loops, and what troubleshooting options does Kubernetes recommend?",
+      "category": "paraphrased",
+      "hit": true,
+      "hit_rank": 1,
+      "expected": [
+        {
+          "file_path": "content/en/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm.md",
+          "section_path": [
+            "Not possible to join a v1.18 Node to a v1.17 cluster due to missing RBAC",
+            "`coredns` pods have `CrashLoopBackOff` or `Error` state"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.8035,
+          "file_path": "content/en/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm.md",
+          "section_path": [
+            "Not possible to join a v1.18 Node to a v1.17 cluster due to missing RBAC",
+            "`coredns` pods have `CrashLoopBackOff` or `Error` state"
+          ],
+          "chunk_id": "b93001d9bae76f3b"
+        },
+        {
+          "rank": 2,
+          "score": 0.7635,
+          "file_path": "content/en/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm.md",
+          "section_path": [
+            "Not possible to join a v1.18 Node to a v1.17 cluster due to missing RBAC",
+            "Pods in `RunContainerError`, `CrashLoopBackOff` or `Error` state"
+          ],
+          "chunk_id": "b28e75ef7c31d732"
+        },
+        {
+          "rank": 3,
+          "score": 0.7096,
+          "file_path": "content/en/docs/setup/production-environment/tools/kubeadm/control-plane-flags.md",
+          "section_path": [
+            "Customizing the control plane with flags in `ClusterConfiguration`",
+            "Customizing CoreDNS"
+          ],
+          "chunk_id": "e0aa0c7d7fd845b1"
+        },
+        {
+          "rank": 4,
+          "score": 0.6999,
+          "file_path": "content/en/docs/tasks/administer-cluster/dns-custom-nameservers.md",
+          "section_path": [
+            "Introduction",
+            "CoreDNS",
+            "CoreDNS ConfigMap options"
+          ],
+          "chunk_id": "062e307f65353418"
+        },
+        {
+          "rank": 5,
+          "score": 0.6986,
+          "file_path": "content/en/docs/tasks/administer-cluster/dns-debugging-resolution.md",
+          "section_path": [
+            "Create a simple Pod to use as a test environment"
+          ],
+          "chunk_id": "d5b99d7210e09e8d"
+        }
+      ]
+    },
+    {
+      "question_id": "q7",
+      "question": "My Deployment keeps replacing Pods unexpectedly. How do its label selector and Pod template labels interact, and what happens if another controller manages Pods with matching labels?",
+      "category": "paraphrased",
+      "hit": true,
+      "hit_rank": 1,
+      "expected": [
+        {
+          "file_path": "content/en/docs/concepts/workloads/controllers/deployment.md",
+          "section_path": [
+            "Use Case",
+            "Writing a Deployment Spec",
+            "Selector"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.7865,
+          "file_path": "content/en/docs/concepts/workloads/controllers/deployment.md",
+          "section_path": [
+            "Use Case",
+            "Writing a Deployment Spec",
+            "Selector"
+          ],
+          "chunk_id": "c6f5cd1a4de7468c"
+        },
+        {
+          "rank": 2,
+          "score": 0.7397,
+          "file_path": "content/en/docs/tasks/manage-kubernetes-objects/imperative-config.md",
+          "section_path": [
+            "Trade-offs",
+            "Defining controller selectors and PodTemplate labels"
+          ],
+          "chunk_id": "ae146d0bcba2ae3c"
+        },
+        {
+          "rank": 3,
+          "score": 0.7243,
+          "file_path": "content/en/docs/concepts/workloads/controllers/replicaset.md",
+          "section_path": [
+            "How a ReplicaSet works",
+            "Writing a ReplicaSet manifest",
+            "Pod Selector"
+          ],
+          "chunk_id": "34515231d1378af1"
+        },
+        {
+          "rank": 4,
+          "score": 0.72,
+          "file_path": "content/en/docs/concepts/workloads/controllers/replicationcontroller.md",
+          "section_path": [
+            "How a ReplicationController works",
+            "Working with ReplicationControllers",
+            "Isolating pods from a ReplicationController"
+          ],
+          "chunk_id": "ae7b0565f0d21734"
+        },
+        {
+          "rank": 5,
+          "score": 0.7191,
+          "file_path": "content/en/docs/concepts/workloads/controllers/deployment.md",
+          "section_path": [
+            "Use Case",
+            "Updating a Deployment",
+            "Label selector updates"
+          ],
+          "chunk_id": "a057f106c418052b"
+        }
+      ]
+    },
+    {
+      "question_id": "q8",
+      "question": "I'm running stable and canary versions of my frontend. How can I use a Service selector to route traffic to both, and what determines the traffic ratio?",
+      "category": "paraphrased",
+      "hit": false,
+      "hit_rank": null,
+      "expected": [
+        {
+          "file_path": "content/en/docs/concepts/workloads/management.md",
+          "section_path": [
+            "Organizing resource configurations",
+            "Canary deployments"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.578,
+          "file_path": "content/en/docs/reference/command-line-tools-reference/feature-gates/ServiceTopology.md",
+          "section_path": [],
+          "chunk_id": "bc60f1e029f7c809"
+        },
+        {
+          "rank": 2,
+          "score": 0.5632,
+          "file_path": "content/en/docs/reference/command-line-tools-reference/feature-gates/ServiceTrafficDistribution.md",
+          "section_path": [],
+          "chunk_id": "3bc97a80c3fea0fe"
+        },
+        {
+          "rank": 3,
+          "score": 0.5419,
+          "file_path": "content/en/docs/reference/networking/virtual-ips.md",
+          "section_path": [
+            "Proxy modes",
+            "Traffic distribution control",
+            "Interaction with Traffic Policies"
+          ],
+          "chunk_id": "2a7b702c2b3deff9"
+        },
+        {
+          "rank": 4,
+          "score": 0.5121,
+          "file_path": "content/en/docs/reference/networking/virtual-ips.md",
+          "section_path": [
+            "Proxy modes",
+            "Traffic distribution control",
+            "Considerations for using traffic distribution control"
+          ],
+          "chunk_id": "32175a6cc335370b"
+        },
+        {
+          "rank": 5,
+          "score": 0.4913,
+          "file_path": "content/en/docs/concepts/services-networking/service-traffic-policy.md",
+          "section_path": [
+            "Using Service Internal Traffic Policy"
+          ],
+          "chunk_id": "4705d1fc158b8ebe"
+        }
+      ]
+    },
+    {
+      "question_id": "q9",
+      "question": "I have a mixed Windows and Linux Kubernetes cluster, and I don't want existing Linux workloads to accidentally land on Windows nodes. How can I enforce OS-specific scheduling without modifying every existing Deployment?",
+      "category": "task",
+      "hit": true,
+      "hit_rank": 2,
+      "expected": [
+        {
+          "file_path": "content/en/docs/concepts/windows/user-guide.md",
+          "section_path": [
+            "Objectives",
+            "Taints and tolerations",
+            "Ensuring OS-specific workloads land on the appropriate container host"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.72,
+          "file_path": "content/en/docs/concepts/windows/user-guide.md",
+          "section_path": [
+            "Objectives",
+            "Taints and tolerations"
+          ],
+          "chunk_id": "cf3fa1c25da890a8"
+        },
+        {
+          "rank": 2,
+          "score": 0.6893,
+          "file_path": "content/en/docs/concepts/windows/user-guide.md",
+          "section_path": [
+            "Objectives",
+            "Taints and tolerations",
+            "Ensuring OS-specific workloads land on the appropriate container host"
+          ],
+          "chunk_id": "bc72856aff60302e"
+        },
+        {
+          "rank": 3,
+          "score": 0.6416,
+          "file_path": "content/en/docs/concepts/security/pod-security-standards.md",
+          "section_path": [
+            "Profile Details",
+            "Policy Instantiation",
+            "Alternatives"
+          ],
+          "chunk_id": "dd69c7ebc013e8b2"
+        },
+        {
+          "rank": 4,
+          "score": 0.6195,
+          "file_path": "content/en/docs/concepts/workloads/pods/_index.md",
+          "section_path": [
+            "What is a Pod?",
+            "Working with Pods",
+            "Pod OS"
+          ],
+          "chunk_id": "417034e48c03549d"
+        },
+        {
+          "rank": 5,
+          "score": 0.5931,
+          "file_path": "content/en/docs/concepts/scheduling-eviction/assign-pod-node.md",
+          "section_path": [],
+          "chunk_id": "24601d97c91b983e"
+        }
+      ]
+    },
+    {
+      "question_id": "q11",
+      "question": "I need a controller to act as a specific ServiceAccount, but only allow it to manage Deployments in production. How should I configure RBAC for this restricted impersonation?",
+      "category": "task",
+      "hit": true,
+      "hit_rank": 1,
+      "expected": [
+        {
+          "file_path": "content/en/docs/reference/access-authn-authz/user-impersonation.md",
+          "section_path": [
+            "Constrained Impersonation",
+            "Understanding constrained impersonation",
+            "Configuring constrained impersonation with RBAC",
+            "Example: Impersonate a ServiceAccount"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.5994,
+          "file_path": "content/en/docs/reference/access-authn-authz/user-impersonation.md",
+          "section_path": [
+            "Constrained Impersonation",
+            "Understanding constrained impersonation",
+            "Configuring constrained impersonation with RBAC",
+            "Example: Impersonate a ServiceAccount"
+          ],
+          "chunk_id": "863fc7c02c579610"
+        },
+        {
+          "rank": 2,
+          "score": 0.5802,
+          "file_path": "content/en/docs/reference/access-authn-authz/rbac.md",
+          "section_path": [
+            "API objects",
+            "ServiceAccount permissions"
+          ],
+          "chunk_id": "d01e01388ece31c9"
+        },
+        {
+          "rank": 3,
+          "score": 0.5758,
+          "file_path": "content/en/docs/reference/access-authn-authz/user-impersonation.md",
+          "section_path": [
+            "Constrained Impersonation",
+            "Understanding constrained impersonation",
+            "Configuring constrained impersonation with RBAC",
+            "Example: Impersonate a user for specific actions"
+          ],
+          "chunk_id": "56be543a246673a9"
+        },
+        {
+          "rank": 4,
+          "score": 0.5677,
+          "file_path": "content/en/docs/reference/access-authn-authz/rbac.md",
+          "section_path": [
+            "API objects",
+            "Privilege escalation prevention and bootstrapping",
+            "Restrictions on role creation or update"
+          ],
+          "chunk_id": "5d98a806382f4abf"
+        },
+        {
+          "rank": 5,
+          "score": 0.5645,
+          "file_path": "content/en/docs/reference/access-authn-authz/rbac.md",
+          "section_path": [
+            "API objects",
+            "Upgrading from ABAC",
+            "Permissive RBAC permissions"
+          ],
+          "chunk_id": "47496a1da461d52e"
+        }
+      ]
+    },
+    {
+      "question_id": "q13",
+      "question": "I need to make sure a dependent Service exists and register a Pod with an external management server before my application starts. Can init containers handle these startup tasks?",
+      "category": "paraphrased",
+      "hit": true,
+      "hit_rank": 1,
+      "expected": [
+        {
+          "file_path": "content/en/docs/concepts/workloads/pods/init-containers.md",
+          "section_path": [
+            "Understanding init containers",
+            "Using init containers",
+            "Examples"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.6805,
+          "file_path": "content/en/docs/concepts/workloads/pods/init-containers.md",
+          "section_path": [
+            "Understanding init containers",
+            "Using init containers",
+            "Examples"
+          ],
+          "chunk_id": "d98a52ef4f100a0e"
+        },
+        {
+          "rank": 2,
+          "score": 0.6766,
+          "file_path": "content/en/docs/concepts/workloads/controllers/daemonset.md",
+          "section_path": [
+            "Writing a DaemonSet Spec",
+            "Alternatives to DaemonSet",
+            "Init scripts"
+          ],
+          "chunk_id": "a7554aba6acdc889"
+        },
+        {
+          "rank": 3,
+          "score": 0.6454,
+          "file_path": "content/en/docs/concepts/workloads/pods/init-containers.md",
+          "section_path": [
+            "Understanding init containers"
+          ],
+          "chunk_id": "e7cff26c30438c15"
+        },
+        {
+          "rank": 4,
+          "score": 0.6433,
+          "file_path": "content/en/docs/concepts/workloads/pods/init-containers.md",
+          "section_path": [
+            "Understanding init containers",
+            "Detailed behavior"
+          ],
+          "chunk_id": "b3694f8419f979dc"
+        },
+        {
+          "rank": 5,
+          "score": 0.6382,
+          "file_path": "content/en/docs/concepts/workloads/pods/init-containers.md",
+          "section_path": [],
+          "chunk_id": "2521ee8f06728672"
+        }
+      ]
+    },
+    {
+      "question_id": "q14",
+      "question": "A Pod is already running and I need to inspect its state to debug a hard-to-reproduce issue. Can I temporarily attach a container to it without recreating the Pod?",
+      "category": "paraphrased",
+      "hit": false,
+      "hit_rank": null,
+      "expected": [
+        {
+          "file_path": "content/en/docs/concepts/workloads/pods/ephemeral-containers.md",
+          "section_path": [
+            "Understanding ephemeral containers"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.7056,
+          "file_path": "content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+          "section_path": [
+            "Using `kubectl describe pod` to fetch details about pods",
+            "Debugging using a copy of the Pod",
+            "Copying a Pod while adding a new container"
+          ],
+          "chunk_id": "dd1b2cba6dde97f2"
+        },
+        {
+          "rank": 2,
+          "score": 0.6843,
+          "file_path": "content/en/docs/reference/kubectl/generated/kubectl_debug/_index.md",
+          "section_path": [],
+          "chunk_id": "2441cc7e92858b97"
+        },
+        {
+          "rank": 3,
+          "score": 0.6841,
+          "file_path": "content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+          "section_path": [
+            "Using `kubectl describe pod` to fetch details about pods",
+            "Debugging using a copy of the Pod"
+          ],
+          "chunk_id": "5e5bc0ece86a0476"
+        },
+        {
+          "rank": 4,
+          "score": 0.6692,
+          "file_path": "content/en/docs/reference/glossary/ephemeral-container.md",
+          "section_path": [],
+          "chunk_id": "ef92c4b49eccf951"
+        },
+        {
+          "rank": 5,
+          "score": 0.6602,
+          "file_path": "content/en/docs/tasks/debug/debug-application/debug-running-pod.md",
+          "section_path": [
+            "Using `kubectl describe pod` to fetch details about pods",
+            "Debugging using a copy of the Pod",
+            "Copying a Pod while changing its command"
+          ],
+          "chunk_id": "e147908c7215d7c3"
+        }
+      ]
+    },
+    {
+      "question_id": "q16",
+      "question": "I have a Deployment running two nginx Pods and want to add a Redis container to each Pod without deleting the Deployment. How can I patch its Pod template and verify that the replacement Pods contain both containers?",
+      "category": "task",
+      "hit": true,
+      "hit_rank": 1,
+      "expected": [
+        {
+          "file_path": "content/en/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch.md",
+          "section_path": [
+            "Use a strategic merge patch to update a Deployment"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.7501,
+          "file_path": "content/en/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch.md",
+          "section_path": [
+            "Use a strategic merge patch to update a Deployment"
+          ],
+          "chunk_id": "b0ca149a130136bb"
+        },
+        {
+          "rank": 2,
+          "score": 0.7257,
+          "file_path": "content/en/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch.md",
+          "section_path": [
+            "Use a strategic merge patch to update a Deployment"
+          ],
+          "chunk_id": "e330201dbfaa9643"
+        },
+        {
+          "rank": 3,
+          "score": 0.6624,
+          "file_path": "content/en/docs/reference/kubectl/generated/kubectl_set/kubectl_set_serviceaccount.md",
+          "section_path": [],
+          "chunk_id": "a0baf7e1bc751a1a"
+        },
+        {
+          "rank": 4,
+          "score": 0.655,
+          "file_path": "content/en/docs/tasks/manage-kubernetes-objects/kustomization.md",
+          "section_path": [
+            "Overview of Kustomize",
+            "Generating Resources",
+            "Composing and Customizing Resources",
+            "Customizing"
+          ],
+          "chunk_id": "9b36995cf164642a"
+        },
+        {
+          "rank": 5,
+          "score": 0.6495,
+          "file_path": "content/en/docs/concepts/workloads/management.md",
+          "section_path": [
+            "Organizing resource configurations",
+            "In-place updates of resources",
+            "kubectl patch"
+          ],
+          "chunk_id": "19cad3ee4d9ee779"
+        }
+      ]
+    },
+    {
+      "question_id": "q17",
+      "question": "I'm setting up kubeadm administrator credentials. What's the difference between the identity and group assigned to admin.conf and super-admin.conf, and which one can bypass RBAC authorization?",
+      "category": "exact-identifier",
+      "hit": false,
+      "hit_rank": null,
+      "expected": [
+        {
+          "file_path": "content/en/docs/setup/best-practices/certificates.md",
+          "section_path": [
+            "How certificates are used by your cluster",
+            "Configure certificates for user accounts"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.6428,
+          "file_path": "content/en/docs/reference/glossary/rbac.md",
+          "section_path": [],
+          "chunk_id": "2f30f5dbd8d8fdae"
+        },
+        {
+          "rank": 2,
+          "score": 0.6395,
+          "file_path": "content/en/docs/reference/access-authn-authz/authentication.md",
+          "section_path": [
+            "Users in Kubernetes"
+          ],
+          "chunk_id": "c77f622e772fc412"
+        },
+        {
+          "rank": 3,
+          "score": 0.6291,
+          "file_path": "content/en/docs/tasks/administer-cluster/kubeadm/kubeadm-certs.md",
+          "section_path": [
+            "Using custom certificates",
+            "Generating kubeconfig files for additional users"
+          ],
+          "chunk_id": "0dbd52c799c30378"
+        },
+        {
+          "rank": 4,
+          "score": 0.6261,
+          "file_path": "content/en/docs/reference/access-authn-authz/authorization.md",
+          "section_path": [
+            "Authorization verdicts",
+            "Authorization modes"
+          ],
+          "chunk_id": "4910b9108c6bdad7"
+        },
+        {
+          "rank": 5,
+          "score": 0.6229,
+          "file_path": "content/en/docs/reference/access-authn-authz/rbac.md",
+          "section_path": [],
+          "chunk_id": "22112d1d6249f134"
+        }
+      ]
+    },
+    {
+      "question_id": "q20",
+      "question": "We're upgrading the storage API version of a custom resource. How can we make sure all existing objects have been migrated before removing the old API version or retiring an encryption key?",
+      "category": "paraphrased",
+      "hit": true,
+      "hit_rank": 1,
+      "expected": [
+        {
+          "file_path": "content/en/docs/concepts/overview/working-with-objects/storage-version.md",
+          "section_path": [
+            "Storage version to resource mapping",
+            "Migrating to a different storage version"
+          ]
+        }
+      ],
+      "top_5": [
+        {
+          "rank": 1,
+          "score": 0.683,
+          "file_path": "content/en/docs/concepts/overview/working-with-objects/storage-version.md",
+          "section_path": [
+            "Storage version to resource mapping",
+            "Migrating to a different storage version"
+          ],
+          "chunk_id": "7771afe2ad2bc5f4"
+        },
+        {
+          "rank": 2,
+          "score": 0.6015,
+          "file_path": "content/en/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning.md",
+          "section_path": [
+            "Overview"
+          ],
+          "chunk_id": "b02e7a3aa0de0f3b"
+        },
+        {
+          "rank": 3,
+          "score": 0.5662,
+          "file_path": "content/en/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning.md",
+          "section_path": [],
+          "chunk_id": "3686777fa6ce2fc0"
+        },
+        {
+          "rank": 4,
+          "score": 0.5657,
+          "file_path": "content/en/docs/tasks/manage-kubernetes-objects/storage-version-migration.md",
+          "section_path": [
+            "Re-encrypt Kubernetes secrets using storage version migration",
+            "Update the preferred storage schema of a CRD"
+          ],
+          "chunk_id": "1533b2b76aaadad7"
+        },
+        {
+          "rank": 5,
+          "score": 0.5526,
+          "file_path": "content/en/docs/reference/command-line-tools-reference/feature-gates/StorageVersionHash.md",
+          "section_path": [],
+          "chunk_id": "527c64fa63f93427"
+        }
+      ]
+    }
+  ]
+}
