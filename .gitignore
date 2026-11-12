@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -33,3 +33,6 @@ Thumbs.db
 *.key
 *.pem
 kaggle.json
+
+# One-time patch scripts
+scripts/patch*.py
