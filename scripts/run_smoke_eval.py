@@ -2,12 +2,12 @@
 Run the smoke set against the Qdrant index.
 
 Supports two modes:
-- dense: MiniLM dense-only retrieval (Stage 1 baseline)
-- hybrid: MiniLM + BM25 with RRF fusion (Stage 2)
+- dense: BGE-M3 dense-only retrieval (Stage 3)
+- hybrid: BGE-M3 + BM25 with RRF fusion (Stage 3 hybrid)
 
 Usage:
-    python scripts/run_smoke_eval.py --mode dense --output stage1_smoke.json
-    python scripts/run_smoke_eval.py --mode hybrid --output stage2_smoke.json
+    python scripts/run_smoke_eval.py --mode dense --output stage3_dense.json
+    python scripts/run_smoke_eval.py --mode hybrid --output stage3_hybrid.json
 """
 
 import argparse
@@ -15,19 +15,19 @@ import json
 import sys
 from pathlib import Path
 
-# Add project root to sys.path so `retrieval` can be imported
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
 
 
-DB_PATH = Path("D:/k8s-rag/data/qdrant/v1.36_db")
-COLLECTION_NAME = "chunks_v1.36"
+DB_PATH = Path("D:/k8s-rag/data/qdrant/v1.36_bge_db")
+COLLECTION_NAME = "chunks_v1.36_bge"
 SMOKE_PATH = Path("D:/k8s-rag/evaluation/smoke_set.jsonl")
 RESULTS_DIR = Path("D:/k8s-rag/evaluation/results")
 
-MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+MODEL_NAME = "BAAI/bge-m3"
+EMBEDDING_DIM = 1024
 TOP_K = 5
 
 
@@ -44,7 +44,7 @@ def matches_expected(payload: dict, expected: dict) -> bool:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["dense", "hybrid"], default="dense")
-    parser.add_argument("--output", default="stage1_smoke.json")
+    parser.add_argument("--output", default="stage3_dense.json")
     args = parser.parse_args()
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -137,7 +137,7 @@ def main():
     mrr = sum(reciprocal_ranks) / len(questions) if reciprocal_ranks else 0.0
 
     summary = {
-        "stage": f"{args.mode}_smoke",
+        "stage": f"stage3_{args.mode}",
         "mode": args.mode,
         "num_questions": len(questions),
         "top_k": TOP_K,

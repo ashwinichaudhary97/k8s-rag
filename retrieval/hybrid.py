@@ -1,5 +1,5 @@
 """
-Hybrid retrieval: dense (Qdrant) + sparse (BM25) with RRF fusion.
+Hybrid retrieval: dense (BGE-M3 + Qdrant) + sparse (BM25) with RRF fusion.
 """
 
 from pathlib import Path
@@ -10,16 +10,15 @@ from sentence_transformers import SentenceTransformer
 from retrieval.bm25 import load_index, search as bm25_search
 
 
-DB_PATH = Path("D:/k8s-rag/data/qdrant/v1.36_db")
-COLLECTION_NAME = "chunks_v1.36"
-MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+DB_PATH = Path("D:/k8s-rag/data/qdrant/v1.36_bge_db")
+COLLECTION_NAME = "chunks_v1.36_bge"
+MODEL_NAME = "BAAI/bge-m3"
 
 RRF_K = 60
 RETRIEVAL_TOP_K = 50
 
 
 def _normalize_chunk_id(item) -> str:
-    """bm25s returns a dict like {'id': N, 'text': 'chunk_id'}."""
     if isinstance(item, str):
         return item
     if isinstance(item, dict):
@@ -50,7 +49,7 @@ class HybridRetriever:
     def __init__(self):
         print("Loading Qdrant client")
         self.qdrant = QdrantClient(path=str(DB_PATH))
-        print("Loading MiniLM embedding model")
+        print(f"Loading BGE-M3 embedding model ({MODEL_NAME})")
         self.embedder = SentenceTransformer(MODEL_NAME, device="cpu")
         print("Loading BM25 index")
         self.bm25 = load_index()
@@ -77,7 +76,7 @@ class HybridRetriever:
         from qdrant_client.models import Filter, FieldCondition, MatchValue
         results = self.qdrant.query_points(
             collection_name=COLLECTION_NAME,
-            query=[0.0] * 384,
+            query=[0.0] * 1024,
             query_filter=Filter(
                 must=[FieldCondition(key="chunk_id", match=MatchValue(value=chunk_id))]
             ),
